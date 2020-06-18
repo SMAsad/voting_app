@@ -285,3 +285,4 @@ BallotArchive -->|BallotSpec| AuditJob
 UserNode -.-|sync| PrivChain
 UserNode -->|raw votes| UserAuditor
 ````
+
