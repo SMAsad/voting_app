@@ -15,6 +15,8 @@ const ABI_PATH = 'assets/contracts/voting.abi';
 const CONTRACT_ADDRESS = '0x7B8068D32AA298158E838Fcd9a324B9810AE8333';
 const VOTE_YES = 'yes';
 const VOTE_NO = 'no';
+const METHOD_VOTE_YES = 'voteYes';
+const METHOD_VOTE_NO = 'voteNo';
 
 class VotingService {
   WalletService walletService;
@@ -32,8 +34,6 @@ class VotingService {
   Future<String> _getAbi() async {
     var abi = await rootBundle.loadString('assets/contracts/voting.json');
     return abi;
-    //var abiFile = File(abi);
-    //return (abiFile.readAsStringSync());
   }
 
   Future<String> submitVoteTransaction(String specHashStr, String value) async {
@@ -58,9 +58,9 @@ class VotingService {
 
     ContractFunction voteFn;
     if (value.toLowerCase() == VOTE_YES) {
-      voteFn = contract.function('voteYes');
+      voteFn = contract.function(METHOD_VOTE_YES);
     } else if (value.toLowerCase() == VOTE_NO) {
-      voteFn = contract.function('voteNo');
+      voteFn = contract.function(METHOD_VOTE_NO);
     } else {
       throw Exception("Invalid vote value");
     }
